@@ -1,0 +1,88 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencil Sketch Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; 
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-right: 10px;
+        }
+
+        input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green button color */
+            color: white;
+            border: none;
+            padding: 12px 24px; /* Increase padding for a larger button */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        p.error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        img {
+            margin-top: 20px;
+            margin-right: 20px;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Pencil Sketch Generator</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
+        <input type="submit" value="Generate Sketch">
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if filename %}
+        <h2>Uploaded Image: {{ filename }}</h2>
+        <img src="data:image/png;base64,{{ base64_image }}" alt="Pencil Sketch">
+    {% endif %}
+</body>
+</html>
